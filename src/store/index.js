@@ -5,7 +5,8 @@ import transaksi from "./modules/transaksi";
 import users from "./modules/user.js";
 import Kereta from "./modules/kereta.js"
 import produk from "./modules/produk.js"
-import kategori from "./modules/kategori"
+import kategori from "./modules/kategori.JS"
+import auth from "./modules/auth";
 
 const store = createStore({
     state: {
@@ -18,7 +19,8 @@ const store = createStore({
         users,
         Kereta,
         produk,
-        kategori
+        kategori,
+        auth
     }
 })
 export default store;

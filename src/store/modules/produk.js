@@ -15,6 +15,14 @@ const produk = {
             console.log("Produk:", produk);
             return produk
         },
+
+        // filter produk
+        getProdukByKategori: (state) => (produkKategori) => {
+            const produk = state.produkData.filter(
+                (p) => p.kategri = produkKategori
+            )
+            return produk
+        },
     },
     actions: {
         async fetchProduk({ commit }) {
@@ -42,6 +50,18 @@ const produk = {
             }
         },
 
+        async fetchFilterProduk({ commit }, produkKategori) {
+            try {
+                const response = await axios.get(
+                    `https://fakestoreapi.com/products/${produkKategori}`
+                );
+                commit("SET_FILTER_PRODUK", response.data);
+            } catch (error) {
+                alert(error);
+                console.log(error);
+            }
+        },
+
     },
     mutations: {
         SET_PRODUKS(state, produk) {
@@ -49,6 +69,9 @@ const produk = {
         },
         SET_SINGLE_PRODUK(state, produk) {
             state.singleProduk = produk
+        },
+        SET_FILTER_PRODUK(state, produk) {
+            state.filterProduk = produk
         }
     },
 };

@@ -35,10 +35,31 @@
         <li>
           <a href="/kategori" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Kategory</a>
         </li>
+        <div v-if="isAuthenticated">
+          <button @click="logout">Logout</button>
+        </div>
+        <div v-else>
+          <router-link to="/login">Login</router-link>
+        </div>
       </ul>
     </div>
   </div>
 </nav>
-
 <router-view />
 </template>
+
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters('auth', ['isAuthenticated'],)
+  },
+  methods: {
+    ...mapActions('auth', ['logout']),
+  },
+};
+</script>
+<style>
+  
+</style>
